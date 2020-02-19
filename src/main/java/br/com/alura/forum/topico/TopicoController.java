@@ -31,8 +31,14 @@ public class TopicoController {
 
     @PostMapping
     public ResponseEntity<?> cadastrar(@RequestBody @Valid TopicoForm topicoForm,
-                                               UriComponentsBuilder uriComponentsBuilder) {
+                                       UriComponentsBuilder uriComponentsBuilder) {
         Topico topico = topicoService.salvar(topicoForm);
         return Response.created(uriComponentsBuilder, new TopicoDTO(topico), TOPICO_PATH);
+    }
+
+    @GetMapping("/{id}")
+    public DetalharTopicoDTO detalhar(@PathVariable Long id) {
+        DetalharTopicoDTO detalhar = topicoService.detalhar(id);
+        return detalhar;
     }
 }

@@ -38,7 +38,6 @@ public class TopicoController {
 
     @GetMapping("/{id}")
     public DetalharTopicoDTO detalhar(@PathVariable Long id) {
-        DetalharTopicoDTO detalhar = topicoService.detalhar(id);
-        return detalhar;
+        return topicoService.detalhar(id);
     }
 }

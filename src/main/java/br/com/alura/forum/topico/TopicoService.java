@@ -1,7 +1,5 @@
 package br.com.alura.forum.topico;
 
-import br.com.alura.forum.config.erros.NotFoundRegistroException;
-
 import java.util.List;
 
 public interface TopicoService {
@@ -12,4 +10,6 @@ public interface TopicoService {
     Topico salvar(TopicoForm topicoForm);
 
     DetalharTopicoDTO detalhar(Long id);
+
+    Topico atualizar(Long id, TopicoUpdateForm topicoUpdateForm);
 }

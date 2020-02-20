@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -40,4 +39,12 @@ public class TopicoController {
     public DetalharTopicoDTO detalhar(@PathVariable Long id) {
         return topicoService.detalhar(id);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody @Valid TopicoUpdateForm topicoUpdateForm) {
+        Topico topicoAtualizado = topicoService.atualizar(id, topicoUpdateForm);
+        return ResponseEntity.ok(new TopicoDTO(topicoAtualizado));
+    }
+
+
 }

@@ -39,8 +39,15 @@ public class TopicoServiceImpl implements TopicoService {
 
     @Override
     public DetalharTopicoDTO detalhar(Long id) {
-        Topico topico = topicoRepository.findById(id).orElseThrow(getNotFoundRegistroExceptionSupplier());
+        Topico topico = findById(id);
         return new DetalharTopicoDTO(topico);
+    }
+
+    @Override
+    public Topico atualizar(Long id, TopicoUpdateForm topicoUpdateForm) {
+        Topico topico = findById(id);
+        Topico topicoAtualizado = topicoUpdateForm.update(topico);
+        return topicoRepository.save(topicoAtualizado);
     }
 
     @NotNull
@@ -49,6 +56,6 @@ public class TopicoServiceImpl implements TopicoService {
     }
 
     private Topico findById(Long id) {
-        return topicoRepository.getOne(id);
+        return topicoRepository.findById(id).orElseThrow(getNotFoundRegistroExceptionSupplier());
     }
 }
